@@ -1,0 +1,7 @@
+import panda as pd
+df =pd.read_csv('/kaggle/input/population-of-pakistan-dataset/sub-division_population_of_pakistan.csv')
+print(df)
+df.info()
+df.head()
+df.tail()
+df.describe()
