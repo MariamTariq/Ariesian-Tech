@@ -1,0 +1,49 @@
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv("Features data set.csv", low_memory=False)
+
+# Display the first few rows to inspect the data
+print(df)
+
+# Convert Date column to datetime
+df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+
+# Check for missing values
+df.isnull().sum()
+
+# Group by Date and sum Weekly Sales
+sales_by_date = df.groupby('Date')['Weekly_Sales'].sum().reset_index()
+
+# Plot the sales trend over time
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10,6))
+plt.plot(sales_by_date['Date'], sales_by_date['Weekly_Sales'], color='blue')
+plt.title('Total Weekly Sales Over Time')
+plt.xlabel('Date')
+plt.ylabel('Weekly Sales')
+plt.grid(True)
+plt.show()
+
+# Sort by Weekly Sales to find peak periods
+peak_sales = sales_by_date.sort_values(by='Weekly_Sales', ascending=False).head(10)
+print(peak_sales)
+
+# Group by Dept and sum Weekly Sales
+dept_sales = df.groupby('Dept')['Weekly_Sales'].sum().reset_index()
+
+# Sort by Weekly Sales to find popular departments
+popular_depts = dept_sales.sort_values(by='Weekly_Sales', ascending=False).head(10)
+print(popular_depts)
+
+# Group by IsHoliday and calculate total weekly sales
+holiday_sales = df.groupby('IsHoliday')['Weekly_Sales'].sum().reset_index()
+
+# Analyze the effect of markdowns
+markdown_effect = df[['MarkDown1', 'MarkDown2', 'MarkDown3', 'MarkDown4', 'MarkDown5', 'Weekly_Sales']].corr()
+
+print(holiday_sales)
+print(markdown_effect)
+
+
