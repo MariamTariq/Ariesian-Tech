@@ -20,10 +20,13 @@ The dataset used in this analysis contains information on 77 cereals, including:
 ***Dataset Source***
 The dataset file `cereal.csv` is included in the project repository.
 #### Project Structure:
-`cereal.csv                   # Dataset file`
-`cereal_analysis.ipynb         # Jupyter notebook for analysis`
-`analysis.py                   # Python script for performing EDA`
-`README.md                     # Project README file`
+`cereal.csv # Dataset file`
+
+`cereal_analysis.ipynb # Jupyter notebook for analysis`
+
+`analysis.py # Python script for performing EDA`
+
+`README.md # Project README file`
 #### Installation:
 To run the analysis on your local machine, follow these steps:
 ***1. Clone the repository:***
