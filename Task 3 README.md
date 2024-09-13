@@ -29,6 +29,7 @@ The dataset file `cereal.csv` is included in the project repository.
 `README.md # Project README file`
 #### Installation:
 To run the analysis on your local machine, follow these steps:
+
 ***1. Clone the repository:***
    `git clone https://github.com/yourusername/cereal-analysis.git`
    `cd cereal-analysis`
@@ -42,6 +43,7 @@ To run the analysis on your local machine, follow these steps:
 The project contains a Python script `analysis.py` and a Jupyter notebook `cereal_analysis.ipynb`. You can run either to explore the dataset and visualize trends. The analysis includes histograms, scatter plots, and correlation heatmaps to illustrate relationships between nutritional factors and ratings.
 #### Analysis Steps:
 The following key steps are performed in the analysis:
+
 ***1.Data Loading:*** Load the cereal dataset for analysis.
 
 ***2.Descriptive Statistics:*** Generate basic statistics for numerical columns such as sugar, sodium, and calories.
