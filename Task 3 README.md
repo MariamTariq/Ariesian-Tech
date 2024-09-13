@@ -32,8 +32,10 @@ To run the analysis on your local machine, follow these steps:
 ***1. Clone the repository:***
    `git clone https://github.com/yourusername/cereal-analysis.git`
    `cd cereal-analysis`
+   
 ***2.Install dependencies:***
    `pip install -r requirements.txt`
+   
 ***3.Run the analysis:***
    `python analysis.py`
 #### Usage:
@@ -41,14 +43,19 @@ The project contains a Python script `analysis.py` and a Jupyter notebook `cerea
 #### Analysis Steps:
 The following key steps are performed in the analysis:
 ***1.Data Loading:*** Load the cereal dataset for analysis.
+
 ***2.Descriptive Statistics:*** Generate basic statistics for numerical columns such as sugar, sodium, and calories.
+
 ***3.Key Nutritional Factor Analysis:***
 Identify the top 5 cereals with the highest sugar, sodium, and calorie content.
+
 ***4.Data Visualization:***
 Histograms for sugar, sodium, and calories.
 Scatter plot for sugar content vs. consumer ratings.
+
 ***5.Correlation Analysis:***
 A correlation matrix to explore relationships between nutritional factors.
+
 ***6.Manufacturer Insights:***
 Grouping cereals by manufacturer to explore average sugar content by brand.
 #### Results
