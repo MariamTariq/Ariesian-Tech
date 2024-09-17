@@ -1,0 +1,100 @@
+# Import necessary libraries 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Step 1: Load the dataset
+file_path = 'Customertravel.csv'  # Adjust this path if necessary
+df = pd.read_csv('Customertravel.csv')
+
+# Step 2: Basic Data Exploration
+print("First 5 rows of the dataset:")
+print(df.head())
+
+print("\nDataset Info:")
+print(df.info())
+
+print("\nMissing values:")
+print(df.isnull().sum())
+
+print("\nStatistical Summary:")
+print(df.describe())
+
+plt.figure(figsize=(6,4))
+sns.countplot(x='Target', data=df)
+plt.title('Distribution of Target')
+plt.show()
+
+# Plotting Age distribution
+plt.figure(figsize=(8,6))
+sns.histplot(df['Age'], kde=True, bins=30)
+plt.title('Age Distribution')
+plt.show()
+
+# Extract numerical columns only for correlation heatmap
+numerical_df = df.select_dtypes(include=[np.number])
+
+# Exploring correlations between numerical features
+plt.figure(figsize=(10,8))
+sns.heatmap(numerical_df.corr(), annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap')
+plt.show()
+
+# Separate numerical and categorical columns
+numerical_cols = df.select_dtypes(include=[np.number]).columns
+categorical_cols = df.select_dtypes(include=['object']).columns
+
+# Fill missing values for numerical columns with median
+df[numerical_cols] = df[numerical_cols].fillna(df[numerical_cols].median())
+
+# Fill missing values for categorical columns with the mode (most frequent value)
+for col in categorical_cols:
+    df[col] = df[col].fillna(df[col].mode()[0])
+
+# Convert categorical variables to numerical (if necessary)
+label_encoders = {}
+for column in categorical_cols:
+    le = LabelEncoder()
+    df[column] = le.fit_transform(df[column])
+    label_encoders[column] = le
+
+# Separating features (X) and target (y)
+X = df.drop('Target', axis=1)
+y = df['Target']
+
+# Splitting the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Step 5: Building and Training the Model
+model = RandomForestClassifier(random_state=42)
+model.fit(X_train_scaled, y_train)
+
+# Step 6: Model Evaluation
+y_pred = model.predict(X_test_scaled)
+accuracy = accuracy_score(y_test, y_pred)
+
+print(f"\nAccuracy: {accuracy*100:.2f}%")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Confusion Matrix
+plt.figure(figsize=(6,4))
+sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d', cmap='Blues')
+plt.title('Confusion Matrix')
+plt.show()
+
+# Feature importance plot
+plt.figure(figsize=(10,6))
+sns.barplot(x=model.feature_importances_, y=X.columns)
+plt.title('Feature Importance')
+plt.show()
