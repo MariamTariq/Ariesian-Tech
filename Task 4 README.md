@@ -102,6 +102,7 @@ plt.show()
 - **Confusion Matrix**: A heatmap provides insights into true positive, false positive, true negative, and false negative rates.
 - **Feature Importance**: A bar plot shows the significance of each feature in predicting customer behavior.
 Here are the visual results of this thorough analysis.
+
 ![Figure_1 task 4](https://github.com/user-attachments/assets/e88fe3d6-3e83-48c7-aaf0-5c330063b759)
 ![Figure_2 task 4](https://github.com/user-attachments/assets/49afa991-0c04-439c-a74b-9a06d66519e1)
 ![Figure_3 task 4](https://github.com/user-attachments/assets/6702b9cd-4de5-4d19-855a-2d6e29b8526b)
